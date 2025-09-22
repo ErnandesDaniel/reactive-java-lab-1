@@ -20,7 +20,7 @@ public class Deck {
 
     public Deck(int id, int userId, String name, String description,List<Card> cards, DeckStatus deckStatus, DeckMetaData deckMetaData ) {
         this.id = id;
-        this.userId=userId;
+        this.userId=userId; //заменить на ссылку на user
         this.name = name;
         this.description = description;
         this.createdAt = LocalDateTime.now();

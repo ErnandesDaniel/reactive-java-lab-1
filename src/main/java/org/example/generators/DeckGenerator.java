@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public class DeckGenerator {
 
+    //сгенерированные значения соответсвеовали прещметной области - не было миллиона карт в колоде
     private static final Random RAND = ThreadLocalRandom.current();
 
     private static final String[] NAMES = {"Java Basics", "SQL Queries", "Algorithms", "Design Patterns", "Spring Boot"};
@@ -18,7 +19,6 @@ public class DeckGenerator {
 
 
         List<Deck> decks = new ArrayList<>();
-
 
         for (int i = 0; i < count; i++) {
 
@@ -38,7 +38,7 @@ public class DeckGenerator {
 
             DeckStatus status = DeckStatus.values()[RAND.nextInt(DeckStatus.values().length)];
 
-            DeckMetaData metaData = new DeckMetaData(cardCount, RAND.nextInt(cardCount + 1)); // studied <= total
+            DeckMetaData metaData = new DeckMetaData(cardCount, RAND.nextInt(cardCount + 1));
 
             decks.add(new Deck(i + 1, userId, name, description, cards, status, metaData));
         }
