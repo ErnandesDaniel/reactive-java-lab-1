@@ -8,7 +8,7 @@ public class Card {
     private String response;
     private LocalDateTime createdAt;
 
-    public Card(int id, String answer, String response, LocalDateTime createdAt) {
+    public Card(int id, String answer, String response) {
         this.id = id;
         this.answer = answer;
         this.response = response;
