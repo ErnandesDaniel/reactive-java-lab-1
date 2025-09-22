@@ -6,7 +6,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
 public class DeckGenerator {
 
     private static final Random RAND = ThreadLocalRandom.current();
@@ -67,17 +66,8 @@ public class DeckGenerator {
 
                     return new Deck(i + 1, userId, name, description, cards, status, metaData);
                 })
-                .collect(Collectors.toList()); // собираем в List<Deck>
+                .collect(Collectors.toList());
     }
-
-
-
-
-
-
-
-
-
 }
 
 
