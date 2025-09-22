@@ -14,7 +14,7 @@ public class DeckGenerator {
 
     private static final String[] DESCRIPTIONS = {"Beginner level", "Advanced topics", "For interviews", "Daily practice", "Quick review"};
 
-    public static List<Deck> generateDecksByArray(int count) {
+    public static List<Deck> generateDecksByCycle(int count) {
 
 
         List<Deck> decks = new ArrayList<>();
