@@ -18,7 +18,7 @@ public class StatsResult {
     @Override
     public String toString() {
         return String.format(
-                "Всего колод (у всех пользователей): %d | Среднее число колод на пользователя: %.2f | Активных пользователей: %d | Неактивных пользователей: %d | Время работы метода: %.2f нс",
+                "Всего колод (у всех пользователей): %d | Среднее число колод на пользователя: %.2f | Активных пользователей: %d | Неактивных пользователей: %d | Время работы метода: %.2f с",
                 totalDecks, avgDecksPerUser, activeUsers, inactiveUsers, executionTimeNanos / 1_000_000.0
         );
     }
