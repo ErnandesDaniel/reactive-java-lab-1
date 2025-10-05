@@ -1,7 +1,7 @@
 package org.example;
 
 
-import org.example.models.User;
+import org.example.models.User.User;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,5 +16,13 @@ public class Main {
 
             System.out.println("i = " + i);
         }
+
+
+
+
+
+
+
+
     }
 }
