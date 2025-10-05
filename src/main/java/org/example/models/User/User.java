@@ -31,4 +31,13 @@ public class User {
         this.decks.add(deck);
     }
 
+    public List<Deck> getDecks() {
+        return this.decks;
+    }
+
+    public UserActivity getUserActivity(){
+        return this.userActivity;
+    }
+
+
 }

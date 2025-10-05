@@ -49,7 +49,7 @@ public class UserGenerator {
         User user = new User(id, login, activity, achievements);
 
         // Добавляем колоды
-        int deckCount = 1 + random.nextInt(5); // от 1 до 5 колод
+        int deckCount = 1 + random.nextInt(8);
         List<Deck> decks = DeckGenerator.generateDecks(deckCount);
         user.setDecks(new ArrayList<>(decks));
 
