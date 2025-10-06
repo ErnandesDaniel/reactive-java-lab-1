@@ -1,4 +1,4 @@
-package org.example.stats;
+package org.example.stats.Common;
 
 import org.example.models.User.User;
 import org.example.models.User.UserActivity;
@@ -7,10 +7,10 @@ import org.example.models.User.UserGenerator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StatsGenerator {
+public class CommonStatsGenerator {
 
     // 3.1. Итерационный цикл
-    public static StatsResult calculateWithLoop(int userCount) {
+    public static CommonStatsResult calculateWithLoop(int userCount) {
         List<User> users = UserGenerator.generateUsers(userCount);
 
         long totalDecks = 0;
@@ -32,11 +32,11 @@ public class StatsGenerator {
 
         double avgDecksPerUser = userCount > 0 ? (double) totalDecks / userCount : 0.0;
 
-        return new StatsResult(totalDecks, avgDecksPerUser, activeUsers, inactiveUsers, end - start);
+        return new CommonStatsResult(totalDecks, avgDecksPerUser, activeUsers, inactiveUsers, end - start);
     }
 
     // 3.2. Stream API с встроенными коллекторами
-    public static StatsResult calculateWithBuiltInCollectors(int userCount) {
+    public static CommonStatsResult calculateWithBuiltInCollectors(int userCount) {
 
         List<User> users = UserGenerator.generateUsers(userCount);
 
@@ -53,14 +53,14 @@ public class StatsGenerator {
                             long active = activityCounts.getOrDefault(UserActivity.ACTIVE, 0L);
                             long inactive = activityCounts.getOrDefault(UserActivity.INACTIVE, 0L);
                             double avg = userCount > 0 ? (double) totalDecks / userCount : 0.0;
-                            return new StatsResult(totalDecks, avg, active, inactive, 0);
+                            return new CommonStatsResult(totalDecks, avg, active, inactive, 0);
                         }
                 )
         );
 
         long end = System.nanoTime();
 
-        return new StatsResult(
+        return new CommonStatsResult(
                 result.totalDecks,
                 result.avgDecksPerUser,
                 result.activeUsers,
@@ -70,15 +70,15 @@ public class StatsGenerator {
     }
 
     // 3.3. Stream API с собственным коллектором
-    public static StatsResult calculateWithCustomCollector(int userCount) {
+    public static CommonStatsResult calculateWithCustomCollector(int userCount) {
         List<User> users = UserGenerator.generateUsers(userCount);
 
         long start = System.nanoTime();
-        StatsResult result = users.stream()
-                .collect(new UserStatsCollector());
+        CommonStatsResult result = users.stream()
+                .collect(new CommonUserStatsCollector());
         long end = System.nanoTime();
 
-        return new StatsResult(
+        return new CommonStatsResult(
                 result.totalDecks,
                 result.avgDecksPerUser,
                 result.activeUsers,

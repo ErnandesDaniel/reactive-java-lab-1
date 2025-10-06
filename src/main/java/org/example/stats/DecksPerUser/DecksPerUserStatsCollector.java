@@ -1,7 +1,10 @@
-package org.example.stats;
+package org.example.stats.DecksPerUser;
 
 import org.example.models.User.User;
 import org.example.models.User.UserActivity;
+import org.example.stats.Common.CommonStatsResult;
+import org.example.stats.Common.CommonUserStatsCollector;
+import org.example.stats.DecksPerUser.DecksPerUserStatsResult;
 
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
@@ -9,12 +12,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-public class UserStatsCollector implements Collector<User, UserStatsCollector.Accumulator, StatsResult> {
+public class DecksPerUserStatsCollector implements Collector<User, DecksPerUserStatsCollector.Accumulator, DecksPerUserStatsResult> {
 
     public static class Accumulator {
         long totalDecks = 0;
-        long activeUsers = 0;
-        long inactiveUsers = 0;
         long userCount = 0;
     }
 
@@ -27,11 +28,6 @@ public class UserStatsCollector implements Collector<User, UserStatsCollector.Ac
     public BiConsumer<Accumulator, User> accumulator() {
         return (acc, user) -> {
             acc.totalDecks += user.getDecks().size();
-            if (user.getUserActivity() == UserActivity.ACTIVE) {
-                acc.activeUsers++;
-            } else if (user.getUserActivity() == UserActivity.INACTIVE) {
-                acc.inactiveUsers++;
-            }
             acc.userCount++;
         };
     }
@@ -40,18 +36,16 @@ public class UserStatsCollector implements Collector<User, UserStatsCollector.Ac
     public BinaryOperator<Accumulator> combiner() {
         return (acc1, acc2) -> {
             acc1.totalDecks += acc2.totalDecks;
-            acc1.activeUsers += acc2.activeUsers;
-            acc1.inactiveUsers += acc2.inactiveUsers;
             acc1.userCount += acc2.userCount;
             return acc1;
         };
     }
 
     @Override
-    public Function<Accumulator, StatsResult> finisher() {
+    public Function<Accumulator, DecksPerUserStatsResult> finisher() {
         return acc -> {
             double avg = acc.userCount > 0 ? (double) acc.totalDecks / acc.userCount : 0.0;
-            return new StatsResult(acc.totalDecks, avg, acc.activeUsers, acc.inactiveUsers, 0);
+            return new DecksPerUserStatsResult(avg,  0);
         };
     }
 
