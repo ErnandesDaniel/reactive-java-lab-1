@@ -5,9 +5,9 @@ import org.example.stats.DecksPerUser.DecksPerUserStatsGenerator;
 
 public class Main {
     public static void main(String[] args) {
-        //int[] sizes = {5_000, 50_000, 250_000};
+        int[] sizes = {5_000, 50_000, 250_000};
 
-        int[] sizes = {5_000, 50_000};
+        //int[] sizes = {5_000, 50_000};
 
         System.out.println("\n CommonStatsGenerator");
 
